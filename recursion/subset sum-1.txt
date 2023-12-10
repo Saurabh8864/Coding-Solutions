@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void findsum(int ind, int sum, vector<int> &arr, vector<int> &ans)
+{
+  if (ind == arr.size())
+  {
+    ans.push_back(sum);
+    return;
+  }
+  findsum(ind + 1, sum + arr[ind], arr, ans);
+  findsum(ind + 1, sum, arr, ans);
+}
+
+vector<int> subsetSum(vector<int> &num, int N)
+{
+  sort(num.begin(), num.end());
+  vector<int> temp;
+  findsum(0, 0, num, temp);
+
+  return temp;
+}
+
+int main()
+{
+
+  int N;
+  cin >> N;
+  vector<int> arr(N);
+  for (int i = 0; i < N; i++)
+  {
+    cin >> arr[i];
+  }
+  vector<int> ans = subsetSum(arr, N);
+  sort(ans.begin(), ans.end());
+  cout << "[";
+  for (auto sum : ans)
+  {
+    cout << sum << " ";
+  }
+  cout << "]";
+  cout << endl;
+
+  return 0;
+}

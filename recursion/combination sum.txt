@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void  solver(int ind, int target,vector< vector<int>> & ans,vector<int>&temp, vector<int> &arr, int n)
+{
+   if(ind== n){
+    if(target==0){
+        ans.push_back(temp);
+    }
+     return;
+   }
+   if(arr[ind]<=target)
+   {
+   temp.push_back(arr[ind]);
+   solver(ind, target-arr[ind], ans, temp,arr, n);
+    temp.pop_back();
+   }
+    solver(ind+1,target, ans, temp, arr, n);
+}
+
+vector<vector<int>> findCombination( vector<int>& arr,int  target){
+    int n = arr.size();
+    vector<vector<int>> ans;
+    vector<int> temp;
+    solver(0, target,ans, temp, arr,n);
+    return ans;
+}
+
+
+
+int main()
+{
+    int n = 3;
+    vector<int> arr = {2,3,5};
+    int target = 8;
+    vector<vector<int>> ans=findCombination(arr, target);
+
+
+    for(int i=0;i<ans.size();i++){
+        for(int j=0;j<ans[i].size();j++){
+            cout<<ans[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    
+}

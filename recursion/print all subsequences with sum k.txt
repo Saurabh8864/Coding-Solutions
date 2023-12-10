@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solver(int ind, int s, vector<int> &ans, vector<int> &arr, int sum, int n)
+{
+    if (ind == n)
+    {
+        if (s == sum)
+        {
+            for (auto it : ans)
+            {
+                cout << it << " ";
+            }
+            cout << endl;
+        }
+
+        return;
+    }
+    //          take condition
+    ans.push_back(arr[ind]);
+    s += arr[ind];
+    solver(ind + 1, s, ans, arr, sum, n);
+    //     not take condition
+    ans.pop_back();
+    s -= arr[ind];
+    solver(ind + 1, s, ans, arr, sum, n);
+}
+
+int main()
+{
+    int n = 5;
+    vector<int> arr = {1,2,3,4,5};
+    int sum = 5;
+    vector<int> ans;
+    solver(0, 0, ans, arr, sum, n);
+}

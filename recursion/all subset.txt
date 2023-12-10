@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void  solver(int ind ,vector<int>& ans,vector<int>& arr, int n)
+{
+        if(ind ==n){
+            for(auto it: ans){
+                cout<< it<<" ";
+            }
+            if(ans.size()==0){
+            cout<<"{}";
+            }
+            cout<<endl;
+          return ; 
+        }
+
+        ans.push_back(arr[ind]);
+       solver(ind+1, ans,arr, n);
+        ans.pop_back();
+
+       solver(ind+1, ans, arr, n);
+
+}
+
+
+int  main(){
+    int num;
+    vector<int> arr={3,1,2};
+    int n =3;
+    vector<int> ans;
+     solver(0,ans,arr,n);
+}
+

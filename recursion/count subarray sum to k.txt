@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int  solver(int ind, int s, vector<int> &ans, vector<int> &arr, int sum, int n)
+{
+    if(s>sum)return 0;
+    if (ind == n)
+    {
+        if (s == sum) return 1;
+           else return 0;
+    }
+    //          take condition
+   
+   int take = solver(ind + 1,s , ans, arr, sum, n);
+   s+=arr[ind];
+    //     not take condition
+   int ntake= solver(ind + 1, s, ans, arr, sum, n);
+
+   return take+ntake;
+}
+
+int main()
+{
+    int n = 3;
+    vector<int> arr = {1,2,1};
+    int sum = 3;
+    vector<int> ans;
+   cout<<solver(0, 0, ans, arr, sum, n);
+    
+}

@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution{
+  public:
+vector<int>findBFS(int V, vector<int>adj[]){
+  queue<int> q;
+  int vis[V+1] ={0};
+  // initially visiot the  very first node
+  vis[0]=1;
+  q.push(0);
+vector<int> bfs;
+  while(!q.empty())
+  {
+    auto node = q.front();
+    q.pop();
+    bfs.push_back(node);
+
+    //  look for the adjacency of the node 
+    for(auto it: adj[node]){
+      // check if it is already visited;
+      if(!vis[it]){
+        //  if not visited make it visited
+        vis[it] =1;
+        q.push(it);
+      }
+    }
+  }
+return bfs;
+}
+};
+
+//  function to add the node 
+void addNode(vector<int>adj[], int U, int V){
+    adj[U].push_back(V);
+    adj[V].push_back(U);
+}
+
+//  functiom to print the result
+void printNode(vector<int> & ans)
+{
+  for(int i=0;i<ans.size();i++){
+    cout<< ans[i] <<" ";
+  }
+}
+// main function
+
+int main(){
+ 
+ 
+    vector<int> adj[6];
+    // adding the nodes
+   addNode(adj,0,1);
+    addNode(adj,1,2);
+     addNode(adj,1,3);
+      addNode(adj,0,4);
+
+      Solution ob;
+
+  vector<int> ans = ob.findBFS(5,adj);
+  printNode(ans);
+  }
+
